@@ -11,7 +11,7 @@ def run_k_fold_model():
 
     if st.button("Run K-Fold Model"):
         # 1. Load Data
-        df = pd.read_csv(r"C:\Users\aryan\OneDrive\Documents\phython project\diabetes prediction\diabetes.csv")
+        df = pd.read_csv(r"C:\Users\aryan\OneDrive\Documents\phython project\diabetes_prediction\diabetes.csv")
         st.write("Sample Data:")
         st.write(df.head())
         X = df.drop("Outcome", axis=1)
