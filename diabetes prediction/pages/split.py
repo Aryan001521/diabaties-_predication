@@ -9,7 +9,7 @@ def run_split_model():
     st.subheader("Split Validation")
 
     if st.button("Run Split Model"):
-        df = pd.read_csv(r"C:\Users\aryan\OneDrive\Documents\phython project\diabetes prediction\diabetes.csv")
+        df = pd.read_csv(r"C:\Users\aryan\OneDrive\Documents\phython project\diabetes_prediction\diabetes.csv")
 
         # Show data
         st.write("📋 Sample Data:")
