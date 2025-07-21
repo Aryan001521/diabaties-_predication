@@ -11,8 +11,7 @@ def run_k_fold_model():
 
     if st.button("Run K-Fold Model"):
         # 1. Load Data
-       df = pd.read_csv("../diabetes.csv")
-
+        df = pd.read_csv("../diabetes.csv")
         st.write("Sample Data:")
         st.write(df.head())
         X = df.drop("Outcome", axis=1)
