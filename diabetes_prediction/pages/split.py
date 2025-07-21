@@ -9,12 +9,12 @@ def run_split_model():
     st.subheader("Split Validation")
 
     if st.button("Run Split Model"):
-        df = pd.read_csv("../diabetes.csv")
-        # Show data
+        # ✅ FIXED: Correct CSV path
+        df = pd.read_csv("diabetes.csv")
+
         st.write("📋 Sample Data:")
         st.write(df.head())
 
-        # Data Info
         buffer = io.StringIO()
         df.info(buf=buffer)
         s = buffer.getvalue()
@@ -29,14 +29,14 @@ def run_split_model():
 
         st.write(f"🧮 Shape of Dataset: {df.shape}")
 
-        # Plot class balance
+        # Class Balance
         st.write("📌 Diabetes Count Plot (Outcome 0 = No, 1 = Yes):")
         fig1, ax1 = plt.subplots()
         sns.countplot(x='Outcome', data=df, ax=ax1)
         ax1.set_title("Diabetes Count")
         st.pyplot(fig1)
 
-        # Scatter Plot
+        # Scatter Plot using Plotly
         import plotly.express as px
         fig2 = px.scatter(
             df,
@@ -52,11 +52,11 @@ def run_split_model():
         x = df.drop("Outcome", axis=1)
         y = df['Outcome']
 
-        # Split data
+        # Train-test split
         from sklearn.model_selection import train_test_split
         x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
 
-        # Scale data
+        # Scaling
         from sklearn.preprocessing import StandardScaler
         scaler = StandardScaler()
         x_train_scalar = scaler.fit_transform(x_train)
@@ -67,7 +67,7 @@ def run_split_model():
         model = LogisticRegression()
         model.fit(x_train_scalar, y_train)
 
-        # Predictions and Evaluation
+        # Predictions
         from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, roc_curve, auc
         y_pred = model.predict(x_test_scalar)
 
